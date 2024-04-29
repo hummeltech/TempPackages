@@ -1,0 +1,22 @@
+---
+name: Test
+
+on:
+  push:
+
+jobs:
+  macOS:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - macos-12
+          - macos-13
+          - macos-14
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check if `libtool` is installed
+        run: brew list libtool
